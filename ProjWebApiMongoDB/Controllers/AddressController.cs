@@ -19,7 +19,7 @@ namespace ProjWebApiMongoDB.Controllers
         [HttpGet]
         public ActionResult<List<Address>> Get() => _addressService.Get();
 
-        [HttpGet("{id:length(24)}", Name = "GetAddress")]
+        [HttpGet("{id:length(24)}",Name = "GetAddress")]
         public ActionResult<Address> Get(string id)
         {
             var address = _addressService.Get(id);

@@ -29,7 +29,10 @@ namespace ProjWebApiMongoDB.Controllers
         [HttpPost]
         public ActionResult<Customer> Create(Customer customer)
         {
-            return _customerService.Create(customer);
+            if (customer.Adress.Id.Length < 24) return NotFound("Chave Address menor que 24 Caracteres.");
+            var ckCustomer = _customerService.Create(customer);
+            if(ckCustomer.Adress == null) return NotFound("Id de endereço não encontrado.");
+            return customer;
         }
 
         [HttpPut("{id:length(24)}")]
